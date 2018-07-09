@@ -1,6 +1,6 @@
 class Pokemon
 
-  attr_accessor :id, :name, :type, :db, :hp
+  attr_accessor :id, :name, :type, :db
 
   @@all = []
 
@@ -21,7 +21,11 @@ class Pokemon
     pokemon = Pokemon.new(id: pokemon_info[0], name: pokemon_info[1], type: pokemon_info[2], db: db)
   end
 
-  def alter_hp(new_hp, id_num)
-    db.execute("UPDATE pokemon SET hp = #{new_hp} WHERE id =#{id}")
+  def alter_pokemon(new_hp)
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, id)
   end
-end
+
+  def alter_hp(new_hp, id_num)
+    db.execute("UPDATE pokemon SET hp =? WHERE id = ?", new_hp, id)
+  end
+  

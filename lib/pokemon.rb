@@ -12,8 +12,8 @@ class Pokemon
     @hp = hp
   end
 
-  def self.save
-
+  def self.save(name, type, db)
+    db.execute("INSERT INTO pokemon")
   end
 
   def find
